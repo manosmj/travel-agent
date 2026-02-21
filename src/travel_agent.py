@@ -14,6 +14,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Update with your preffered LLM API key
 grq_api = os.environ.get("GROQ_API_KEY")
 
 # Initialize the LLM
