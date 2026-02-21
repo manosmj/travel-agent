@@ -1,43 +1,40 @@
-# 🌍 LangGraph-Based AI Travel Recommendation Assistant
+# 🌍 LangGraph-Based AI Travel Agent Assistant
 
-A sophisticated AI-powered travel recommendation system built with LangGraph, combining retrieval-augmented generation (RAG) capabilities with advanced language models. Get personalized travel suggestions, itineraries, and destination insights powered by cutting-edge AI technology.
+An intelligent AI-powered travel agent built with LangGraph that helps users with travel planning, package recommendations, and destination information. The system leverages advanced language models and custom tools to provide comprehensive travel assistance.
 
 ---
 
 ## 🚀 Technologies Used
 
 - **Python 3.8+**
-- **LangGraph** — Agent orchestration and workflow management
-- **ChromaDB** — Vector database for document retrieval
-- **Sentence Transformers** — Text embedding (all-MiniLM-L6-v2)
-- **Large Language Model** — For natural language understanding and generation
-- **LangChain** — Text chunking and metadata management
-- **OpenWeather API** — Real-time weather data retrieval
+- **LangGraph** — Agent orchestration and agentic workflow management
+- **LangChain** — Language model integrations and core utilities
+- **Groq API** — Primary LLM provider (llama-3.1-8b-instant)
+- **OpenAI API** — Alternative LLM provider (gpt-4o-mini)
+- **python-dotenv** — Environment variable management
 
 ---
 
 ## 🧠 Key Features
 
-- **Intelligent Travel Recommendations:**
-  - Personalized destination suggestions based on user preferences
-  - Multi-step itinerary planning with detailed day-by-day schedules
-  - Weather-aware travel advisory and packing recommendations
+- **Multi-Agent Architecture:**
+  - Agentic workflow powered by LangGraph
+  - Tool binding and execution for complex tasks
+  - State management for conversation context
 
-- **RAG Implementation:**
-  - Embeds and stores travel advisory documents in ChromaDB
-  - Retrieves relevant context for user queries
-  - Augments LLM prompt with retrieved context for accurate responses
+- **Custom Tools:**
+  - Repository download and extraction capabilities
+  - Weather forecast integration
+  - Dynamic tool composition and execution
 
-- **Advanced AI Capabilities:**
-  - Real-time weather data integration
-  - Semantic embedding using Sentence Transformers
-  - Multi-agent workflow orchestration with LangGraph
-  - Context-aware conversation management
+- **Multi-LLM Support:**
+  - Groq API integration (primary: llama-3.1-8b-instant)
+  - OpenAI API support (gpt-4o-mini)
+  - Configurable temperature and model selection
 
-- **Data Processing:**
-  - Efficient document chunking and metadata handling
-  - Secure API key management
-  - Advanced semantic embedding and retrieval
+- **Flexible Configuration:**
+  - Environment-based API key management
+  - Easy model switching and parameter tuning
 
 ---
 
@@ -46,19 +43,16 @@ A sophisticated AI-powered travel recommendation system built with LangGraph, co
 ```
 travel-agent/
 ├── src/
-│   ├── langgraph_agent.py      # Main LangGraph agent implementation
-│   ├── weather_app.py          # Weather-focused advisory implementation
-│   ├── weather_forecast.py     # Forecast weather using Open Weather API
-│   ├── vectordb.py             # Collect, Chunk and Store travel data
-│   └── utils/                  # Utility functions and helpers
-├── data/
-│   ├── travel_guides/          # Travel advisory documents
-│   ├── weather/                # Weather data files
-│   └── destinations/           # Destination information
-├── chroma_db/                  # ChromaDB persistent storage
+│   ├── travel_agent.py         # Main LangGraph agent implementation
+│   ├── llm.py                  # LLM initialization and model selection
+│   ├── custom_tools.py         # Custom tool definitions
+│   ├── paths.py                # Path configuration
+├── data/                       # Data directory (for user-provided data)
+├── .env.example                # Environment variables template
+├── .eslintrc.json              # ESLint configuration
 ├── requirements.txt            # Python dependencies
 ├── README.md                   # Project documentation
-└── .gitignore                  # Excludes .env, venv, etc.
+└── .gitignore                  # Excludes .env, venv, __pycache__, etc.
 ```
 
 ---
@@ -85,67 +79,69 @@ pip install -r requirements.txt
 ```
 
 ### 4. Configure API Keys
-Create `.env` file and add your API keys as environment variables:
+Copy `.env.example` to `.env` and add your API keys:
 ```sh
-# For OpenWeather API
-OPENWEATHER_API_KEY="your-openweather-api-key"
-
-# For LLM Service (choose one)
+# For Groq API (Primary LLM)
 GROQ_API_KEY="your-groq-api-key"
-# or
-GOOGLE_API_KEY="your-google-api-key"
-# or
+
+# For OpenAI API (Alternative LLM)
 OPENAI_API_KEY="your-openai-api-key"
 ```
 
-### 5. Prepare Data
-- Ensure travel advisory documents are in `data/travel_guides/`
-- Ensure weather data files are in `data/weather/`
-
-### 6. Launch the Application
+### 5. Launch the Application
 ```sh
-python src/langgraph_agent.py
+python src/travel_agent.py
 ```
 
 ---
 
 ## 🔒 Security Notes
-- **Never commit API keys or .env files to GitHub**
-- Keep sensitive configuration in environment variables
-- Regular security audits recommended
-- Validate all user inputs before processing
-- Use environment variables for all sensitive data
+- **Never commit API keys or .env files to GitHub** — Use `.env.example` as a template
+- Keep sensitive credentials in environment variables only
+- Use `.gitignore` to exclude `.env`, `venv/`, `__pycache__/`, and other sensitive files
+- Validate and sanitize user inputs before processing
+- Review LangGraph workflow execution for security implications
+- Rotate API keys periodically
 
 ---
 
 ## 📝 Usage
 
-### Getting Travel Recommendations
+### Running the Travel Agent
 ```python
-from src.langgraph_agent import TravelAssistant
+from src.travel_agent import State
 
-assistant = TravelAssistant()
-recommendation = assistant.get_recommendation(
-    destination="Paris",
-    duration_days=7,
-    budget="moderate",
-    interests=["art", "food", "history"]
-)
+# The agent runs in an interactive loop
+# It uses LangGraph to manage workflow steps:
+# 1. LLM node - analyzes user input and decides which tools to use
+# 2. Tools node - executes selected tools
+# 3. Continues until the agent produces a final response
 ```
 
-### Checking Weather
-- Enter a country/city name to get weather information
-- View weather analysis and travel recommendations
-- Access historical weather patterns and travel advisories
+### Supported Models
+
+**Groq API:**
+- `llama-3.1-8b-instant` (recommended, default)
+- `llama3-8b-8192`
+
+**OpenAI API:**
+- `gpt-4o-mini`
+
+### State Management
+The agent maintains state with:
+- `messages` — Conversation history
+- `weather_info` — Weather-related data
+- `user_purpose` — Travel purpose context
+- `user_departure` — Departure location
+- `user_destination` — Destination location
 
 ---
 
 ## 📚 References
 - [LangGraph Documentation](https://langchain-ai.github.io/langgraph/)
-- [ChromaDB Documentation](https://www.trychroma.com/)
-- [Sentence Transformers](https://www.sbert.net/)
-- [OpenWeather API](https://openweathermap.org/api)
-- [LangChain](https://langchain.org/)
+- [LangChain Documentation](https://langchain.org/)
+- [Groq API Documentation](https://console.groq.com/docs)
+- [OpenAI API Documentation](https://platform.openai.com/docs)
 
 ---
 
