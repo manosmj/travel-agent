@@ -1,42 +1,31 @@
-# Travel Agent Project
+# LangGraph-based AI Travel Assistant
 
 ## Overview
-The Travel Agent project is a web application designed to help users plan their trips efficiently. With features that allow users to search for destinations, manage itineraries, and find accommodations, this project aims to streamline the travel planning process.
 
-## Features
-- **Search Destinations**: Users can search for travel destinations based on various criteria such as popular places, budget options, or special interests.
-- **Manage Itineraries**: Users can create and manage their itineraries, including flights, accommodations, and activities.
-- **Accommodation Finder**: Users can search and compare hotels and other accommodations based on location and price.
-- **User Accounts**: Users can create accounts to save their preferences and itineraries.
+The LangGraph-based AI Travel Assistant is a sophisticated application designed to enhance your travel experience. It integrates advanced AI technology to provide personalized recommendations, manage travel itineraries, and offer real-time weather updates.
 
-## Technology Stack
-- **Frontend**: HTML, CSS, JavaScript, React
-- **Backend**: Node.js, Express
-- **Database**: MongoDB
+## Key Features
 
-## Installation
-To get started with the Travel Agent project, clone the repository and install the necessary dependencies:
+1. **Weather Integration**:
+   - The assistant provides real-time weather information for your chosen destinations, helping you plan your travels more effectively.
 
-```bash
-git clone https://github.com/manosmj/travel-agent.git
-cd travel-agent
-npm install
-```
+2. **Custom Tools**:
+   - A suite of custom tools designed to facilitate various aspects of travel planning, including itinerary management and travel budgeting.
 
-## Usage
-After installing the dependencies, you can start the application using:
+3. **LLM-Powered Recommendations**:
+   - Utilizing large language models (LLMs), the assistant offers tailored recommendations based on user preferences and previous travel experiences. These can include suggested destinations, activities, and accommodations.
 
-```bash
-npm start
-```
+## Getting Started
 
-The application will run on `http://localhost:3000`.
+To get started with the LangGraph-based AI Travel Assistant, clone the repository and follow the installation instructions in the `INSTALL.md` file.
 
 ## Contributing
-We welcome contributions to the Travel Agent project! Please read our [contributing guidelines](CONTRIBUTING.md) for details.
+
+We welcome contributions to enhance this project. Please read our `CONTRIBUTING.md` file for guidelines on how to contribute.
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
 
-## Contact
-For any inquiries, please contact the maintainer at manosmj@example.com.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+---
+Last updated: 2026-02-21 10:43:05 (UTC)
